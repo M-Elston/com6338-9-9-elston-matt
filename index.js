@@ -13,7 +13,7 @@ form.addEventListener('submit', async (e) => {
     input.value = '';
     weatherSection.innerHTML = '';
     try {
-        const url = `${BASE_URL}?q=${encodeURIComponent(query)}&appid=${API_KEY}&units=imperial`;
+        const url = `${BASE_URL}?q=${query}&appid=${API_KEY}&units=imperial`;
         const response = await fetch(url);
         if (!response.ok) {
             throw new Error('Location not found');
@@ -42,9 +42,7 @@ const renderWeather = (data) => {
 
     weatherSection.innerHTML = `
     <h2>${city}, ${country}</h2>
-    <a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank">
-    Click to view map
-    </a>
+    <a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank">Click to view map</a>
     <img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="${description}" />
     <p style="text-transform: capitalize;">${description}</p><br>
     <p>Current: ${temp.toFixed(2)}&deg F</p>
